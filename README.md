@@ -4,27 +4,24 @@ An AI-powered predictive maintenance system that uses machine learning to identi
 
 ## Key Features
 
-✅ **ML-Based Predictions**
+✅ **Interactive Fleet Builder**
+- Real-time sidebar sliders to input vehicle telemetry (Engine Temp, Tool Wear, RPM, etc.)
+- Add multiple vehicles to simulate a complete fleet
+- Load a pre-calibrated Sample Fleet for quick testing across all risk levels
+
+✅ **ML-Based Predictive Maintenance**
 - GradientBoostingClassifier trained on 10,000+ industrial machines
-- 99.85% accuracy on test data
-- Real-time failure probability scoring
+- Predicts specific failure probability (0-100%) for each vehicle in the fleet
+- Categorizes vehicles dynamically into Critical, High, Medium, and Low risk
 
-✅ **No CSV Upload Required**
-- Auto-loads AI4I 2020 industrial dataset (10,001 machines)
-- Machine selector dropdown for easy browsing
-- Random sample option for quick analysis
+✅ **Agentic AI Recommendations**
+- Integrates with Groq (Llama 3.1) via LangChain to provide dynamic, context-aware advice
+- Generates specific action plans for each vehicle based on its exact failing parameters
 
-✅ **Smart Maintenance Recommendations**
-- Risk level assessment (Low/Medium/High/Critical)
-- Timeline-based action plans
-- Industry maintenance guidelines
-- Downloadable structured reports
-
-✅ **Interactive Dashboard**
-- Machine metrics cards
-- Fleet analytics charts
-- Temperature and tool wear distributions
-- Failure rate visualization
+✅ **Modern Analytics Dashboard**
+- Color-coded recommendation cards with specific risk badges
+- Interactive Data Editor to modify fleet telemetry on the fly
+- Fleet analytics charts: Risk Distribution (Pie), Failure Probability (Bar), and Feature Risk Profile (Scatter)
 
 ## Project Structure
 
@@ -90,23 +87,18 @@ The app will:
 
 ### 4. Use the App
 
-1. **Select a Machine**
-   - Use dropdown to select by UDI
-   - Or click "Random Sample"
+1. **Build Your Fleet**
+   - Use the sidebar sliders to input vehicle telemetry (Engine Temp, Torque, Tool Wear, etc.)
+   - Click "Add vehicle" to add it to the fleet.
+   - Or, simply click **"Load sample fleet"** to populate the app with 4 pre-configured vehicles spanning Critical, High, Medium, and Low risk levels.
 
-2. **Enter Query** (optional)
-   - Example: "What maintenance does this need?"
-   - Default: "What maintenance should this machine receive?"
+2. **Analyze Fleet**
+   - Once your fleet is populated in the Fleet Data Table, click the **"Analyze Fleet"** button.
+   - The ML model will instantly predict the failure probability of every vehicle.
 
-3. **Click Analyze**
-   - ML model predicts failure probability
-   - Risk level assessment generated
-   - Recommendations provided
-
-4. **Review & Download**
-   - See metrics and guidelines
-   - View fleet analytics
-   - Download JSON report
+3. **Review AI Recommendations & Charts**
+   - Read the custom AI-generated recommendation cards for vehicles requiring attention.
+   - Review the Risk Distribution and Feature Risk Analysis charts to understand the overall health of your fleet.
 
 ## Environment Setup
 
@@ -161,11 +153,11 @@ LLM_MODEL=llama-3.1-8b-instant
 
 ### app.py
 Streamlit application with:
-- Machine selector (dropdown or random)
-- ML prediction interface
-- Maintenance guidelines display
-- Fleet analytics charts
-- Structured report download
+- Interactive sidebar for vehicle telemetry input
+- ML prediction interface (analyzes full fleets)
+- LangChain / Groq Agentic AI Recommendation Engine
+- Custom CSS Card UI for highlighting urgent maintenance
+- Fleet analytics charts (Plotly)
 
 ### train.py
 Training pipeline:
